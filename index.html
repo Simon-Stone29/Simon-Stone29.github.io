@@ -1,137 +1,67 @@
-er<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Simon Stone's Website</title>
+   
+
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        /* The animation code */
+        @keyframes myAnimation {
+        from {background-color: red;}
+        to {background-color: yellow;}
         }
-        
-        body {
-            font-family: 'Times New Roman', Times, serif;
-            background-color: #ffffff;
-            padding: 40px;
+
+        @keyframes color {
+            0% {
+                color: blue;
+            }
+
+            25%{
+                color: green;
+            }
+            50%{
+                color: red;      
+            }
+            75%{
+                color: yellow;
+            }
+            100% {
+            color: blue;
+            }
         }
-        
-        .page {
-            max-width: 8.5in;
-            margin: 0 auto;
-            background: white;
-            padding: 60px 80px;
-            position: relative;
+
+        /* The element to apply the animation to */
+        h1 {
+        width: 20%;
+        height: 20%;
+        position: 50px,50px;
+        animation: color 2s linear infinite; 
         }
-        
-        .page-number {
-            position: absolute;
-            top: 20px;
-            left: 80px;
-            font-size: 11px;
-            color: #333;
-        }
-        
-        .header {
-            text-align: right;
-            margin-bottom: 30px;
-            line-height: 1.4;
-            font-size: 11pt;
-        }
-        
-        .header-line {
-            margin-bottom: 2px;
-        }
-        
-        .date {
-            margin: 30px 0;
-            font-size: 11pt;
-        }
-        
-        .recipient {
-            margin-bottom: 25px;
-            line-height: 1.4;
-            font-size: 11pt;
-        }
-        
-        .re-line {
-            margin: 20px 0;
-            font-size: 11pt;
-        }
-        
-        .re-line strong {
-            font-weight: bold;
-        }
-        
-        .salutation {
-            margin-bottom: 15px;
-            font-size: 11pt;
-        }
-        
-        .content {
-            line-height: 1.6;
-            font-size: 11pt;
-            text-align: justify;
-        }
-        
-        .paragraph {
-            margin-bottom: 15px;
-        }
-        
-        .section-heading {
-            font-weight: bold;
-            margin-top: 20px;
-            margin-bottom: 10px;
-            font-size: 11pt;
-        }
-        
-        .subsection-heading {
-            font-weight: bold;
-            font-style: italic;
-            margin-top: 12px;
-            margin-bottom: 6px;
-            font-size: 11pt;
-        }
-        
-        .subsection-content {
-            margin-bottom: 12px;
-            margin-left: 0;
-        }
-        
-        .closing {
-            margin-top: 25px;
-            margin-bottom: 50px;
-            font-size: 11pt;
-        }
-        
-        .signature-block {
-            margin-bottom: 30px;
-            font-size: 11pt;
-        }
-        
-        .motto {
-            margin-top: 20px;
-            font-style: italic;
-            font-size: 10pt;
-            color: #333;
-        }
-        
-        ul {
-            margin-left: 20px;
-            margin-bottom: 12px;
-        }
-        
-        li {
-            margin-bottom: 8px;
-        }
+       /*  h1:hover {
+        width: 20%;
+        height: 20%;
+        position: 50px,50px;
+        animation: color 2s linear infinite; 
+        } */
     </style>
 </head>
 <body>
     <h1>
         Simon Stone's Website
     </h1>
-        
+<video
+  autoplay
+  muted
+  loop
+  playsinline
+  style="width:100%; pointer-events:none;"
+>
+  <source src="iphoneloop.mp4" type="video/mp4">
+</video>
+
+
         
 </body>
 </html>
