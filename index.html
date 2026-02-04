@@ -8,10 +8,7 @@
 
     <style>
         /* The animation code */
-        @keyframes myAnimation {
-        from {background-color: red;}
-        to {background-color: yellow;}
-        }
+
 
         @keyframes color {
             0% {
@@ -32,11 +29,25 @@
             }
         }
 
+       @keyframes slide {
+            0% {
+                transform: translateX(0);
+            }
+
+            50% {
+                transform: translateX(100%);
+            }
+
+            100% {
+                transform: translateX(0);
+            }
+        }
+
+
+
         /* The element to apply the animation to */
         h1 {
         width: 20%;
-        height: 20%;
-        position: 50px,50px;
         animation: color 2s linear infinite; 
         }
        /*  h1:hover {
@@ -56,7 +67,15 @@
   muted
   loop
   playsinline
-  style="width:100%; pointer-events:none;"
+  style="
+    width: 50%;
+    position: fixed;
+    right: -10%;
+    top: 0;
+    pointer-events: none;
+    animation: slide 4s ease-in-out infinite;
+    animation-delay: 2s;
+  "
 >
   <source src="iphoneloop.mp4" type="video/mp4">
 </video>
