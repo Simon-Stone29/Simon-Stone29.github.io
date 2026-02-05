@@ -4,11 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Simon Stone's Animations</title>
-   
+    <link href="https://cdn.simplecss.org/simple.min.css" rel="stylesheet" type="text/css">
 
     <style>
-        /* The animation code */
-
+        .nav .active{
+            color: crimson;
+        }
         
         @keyframes color {
             0% {
@@ -96,6 +97,14 @@
     </style>
 </head>
 <body>
+    <nav>
+    <ul class="nav">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about_me.html">About Me</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a  class="active" href="fun_with_animations.html">Animation Fun!</a></li>
+    </ul>
+    </nav>
     <h1 class="scale-up-center">
         Simon Stone's Website
     </h1>
