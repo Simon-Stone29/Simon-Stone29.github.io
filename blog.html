@@ -1,29 +1,102 @@
-
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blog</title>
-    <link href="https://cdn.simplecss.org/simple.min.css" rel="stylesheet" type="text/css">
-
-    <style>
-           .nav .active{
-            color: crimson;
-        }
-    </style>
-</head>
-<body>
-
-<nav>
-    <ul class="nav">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="about_me.html">About Me</a></li>
-        <li><a  class="active" href="blog.html">Blog</a></li>
-        <li><a href="fun_with_animations.html">Animation Fun!</a></li>
-    </ul>
-</nav>
-
-
-</body>
+   <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Blog</title>
+      <link href="https://cdn.simplecss.org/simple.min.css" rel="stylesheet" type="text/css">
+      <style>
+         * {
+         margin: 0;
+         padding: 0;
+         box-sizing: border-box;
+         }
+         .nav .active {
+         color: crimson;
+         }
+         nav ul.nav {
+         margin: 0;
+         padding: 0;
+         list-style: none;
+         display: flex;
+         gap: 1rem;
+         justify-content: center;
+         }
+         body {
+         display: flex;
+         flex-direction: column;
+         min-height: 100vh;
+         }
+         header {
+         flex: 0 0 100px;
+         display: flex;
+         align-items: center;
+         justify-content: center;
+         }
+         main {
+         flex: 1;
+         display: flex;
+         }
+         footer {
+         flex: 0 0 40px;
+         display: flex;
+         align-items: center;
+         justify-content: center;
+         }
+         .left-sidebar, .right-sidebar {
+         flex: 0 0 20%;
+         padding: 1rem;
+         }
+         .middle {
+         flex: 1 1 40%;
+         padding: 1rem;
+         }
+         ul {
+         padding-left: 1.5rem;
+         }
+      </style>
+   </head>
+   <body>
+      <nav>
+         <ul class="nav">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about_me.html">About Me</a></li>
+            <li><a class="active" href="blog.html">Blog</a></li>
+            <li><a href="fun_with_animations.html">Animation Fun!</a></li>
+         </ul>
+      </nav>
+      <header>
+         Welcome to my blog!
+      </header>
+      <main>
+         <div class="left-sidebar">
+            2/4/2026 -
+            <ul>
+               <li>
+                  Web Dev Lab
+                  <ul>
+                     <li>CSS Flexbox</li>
+                     <li>Animations</li>
+                  </ul>
+               </li>
+               <li>
+                  Theory of Computation
+                  <ul>
+                     <li>Deterministic Finite Automata</li>
+                     <li>State Transitions</li>
+                  </ul>
+               </li>
+            </ul>
+         </div>
+         <div class="middle">
+            Check out what I did yesterday on the left of this holy grail layout and what I'll do tomorrow on the right
+            <br>
+            <img alt="Blog Image" src="blog.png">
+         </div>
+         <div class="right-sidebar">
+            2/6/2026 - I have no classes tomororw and will be working at the Writing Center as a peer tutor from 12pm-3pm.
+         </div>
+      </main>
+      <footer>Blog by Simon Stone</footer>
+   </body>
 </html>
