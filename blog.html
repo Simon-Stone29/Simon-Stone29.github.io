@@ -54,17 +54,75 @@
          ul {
          padding-left: 1.5rem;
          }
+           .logo {
+            align-content: center;
+            font-size: 24px;
+        }
+
+        nav {
+            display: flex;
+            flex-direction: row;
+            background-color: #333;
+            padding: 20px;
+            color: white;
+            justify-content: space-between;
+            align-content: center;
+            text-align: center;
+        }
+
+        .navul {
+            display: flex;
+            justify-content: space-around;
+            list-style-type: none;
+            width: 100%
+        }
+
+        .navul a {
+            color: white;
+        }
+
+        @media (max-width: 600px) {
+
+            nav {
+                flex-direction: column;
+                align-items: center;
+                padding: 10px;
+            }
+
+            nav .logo {
+                width: 100%;
+                text-align: center;
+                padding: 10px 0;
+            }
+
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+                width: 100%;
+                padding: 0;
+            }
+
+            nav li {
+                width: 100%;
+                text-align: center;
+                padding: 10px 0;
+            }
+        }
       </style>
    </head>
    <body>
-      <nav>
-         <ul class="nav">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="about_me.html">About Me</a></li>
-            <li><a class="active" href="blog.html">Blog</a></li>
-            <li><a href="fun_with_animations.html">Animation Fun!</a></li>
-         </ul>
-      </nav>
+ <nav>
+            <div class="logo">
+                Simon Stone
+            </div>
+
+            <ul class="navul">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about_me.html">About Me</a></li>
+                <li><a href="blog.html" class="active">Blog</a></li>
+                <li><a href="fun_with_animations.html">Animation Fun!</a></li>
+            </ul>
+        </nav>
       <header>
          Welcome to my blog!
       </header>
