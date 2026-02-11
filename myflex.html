@@ -1,31 +1,156 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Flexbox Fun</title>
-<style>
-/* Additional styles for fun */
-.red { background: tomato; }
-.blue { background: dodgerblue; }
-.green { background: mediumseagreen; }
-.orange { background: orange; }
-.purple { background: rebeccapurple; }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flexbox Fun</title>
+    <style>
+        /* Additional styles for fun */
+        .red {
+            background: tomato;
+        }
+
+        .blue {
+            background: dodgerblue;
+        }
+
+        .green {
+            background: mediumseagreen;
+        }
+
+        .orange {
+            background: orange;
+        }
+
+        .purple {
+            background: rebeccapurple;
+        }
+
+        .flex-container {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            background-color: gray;
+            padding: 20px
+        }
+
+        .flex-item {
+            align-content: center;
+            text-align: center;
+            color: white;
+            font-size: 2em;
+            width: 100px;
+            height: 100px;
+        }
+
+        @media (min-width: 600px) {
+            .flex-item {
+                color: grey;
+            }
+        }
+
+        /* 900px and up */
+        @media (min-width: 900px) {
+            .flex-container {
+                justify-content: center;
+            }
+
+            .flex-item {
+                color: purple;
+            }
+        }
+
+        .logo {
+            align-content: center;
+            font-size: 24px;
+        }
+
+        nav {
+            display: flex;
+            flex-direction: row;
+            background-color: #333;
+            padding: 20px;
+            color: white;
+            justify-content: space-between;
+            align-content: center;
+            text-align: center;
+        }
+
+        .navul {
+            display: flex;
+            justify-content: space-around;
+            list-style-type: none;
+            width: 80%
+        }
+
+        .navul a {
+            color: white;
+        }
+
+        @media (max-width: 600px) {
+
+            nav {
+                flex-direction: column;
+                align-items: center;
+                padding: 10px;
+            }
+
+            nav .logo {
+                width: 100%;
+                text-align: center;
+                padding: 10px 0;
+            }
+
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+                width: 100%;
+                padding: 0;
+            }
+
+            nav li {
+                width: 100%;
+                text-align: center;
+                padding: 10px 0;
+            }
+        }
+    </style>
 </head>
+
 <body>
-<header>
-<h1>FlexBox practice</h1>
-</header>
-<main>
-<section class="flex-container">
-<div class="flex-item red">1</div>
-</section>
-</main>
-<footer>
-<p>Do we need this?</p>
-</footer>
+    <header>
+
+        <nav>
+            <div class="logo">
+                Logo
+            </div>
+
+            <ul class="navul">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about_me.html" class="active">About Me</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="fun_with_animations.html">Animation Fun!</a></li>
+            </ul>
+        </nav>
+
+        <h1>FlexBox practice</h1>
+    </header>
+    <main>
+        <section class="flex-container">
+            <div class="flex-item red">1</div>
+            <div class="flex-item blue">1</div>
+            <div class="flex-item green">1</div>
+            <div class="flex-item orange">1</div>
+            <div class="flex-item purple">1</div>
+        </section>
+    </main>
+    <footer>
+        <p>Do we need this?</p>
+    </footer>
 </body>
+
 </html>
 <!-- GOAL (initially): use INLINE styles to make width/height 100px,
 text white, and font-size 2em for .flex-item -->
