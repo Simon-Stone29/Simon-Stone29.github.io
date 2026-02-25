@@ -37,23 +37,27 @@
        <br>
     
     <div class="guessing-game">
-        <h1> Number Guessing Game</h1>
-    We have selected a random number between 1 and 100. See if you can guess it in 10 turns or fewer. We'll tell you if your guess was too high or too low.
+        <h1 class="mb-3">Number guessing game</h1>
+<p class="text-muted">
+  We have selected a random number between 1 and 100. See if you can guess
+  it in 10 turns or fewer. We'll tell you if your guess was too high or too low.
+</p>
     <br>
 
-    <div class="submit-bar">
-     Enter a guess:  
-      <input id="guess" type="text">
-      
-      <button id="guessButton">Submit Guess</button>
-      </div>
-      <div class = "submit-bar">
-      Previous guesses:
-      <div class="prev-guesses"> </div>
-      </div>
-      <div id="highLow"></div>
-      
-    </div>
+    <div class="mb-4">
+  <label for="guessField" class="form-label">Enter a guess:</label>
+  <div class="input-group" >
+    <input type="number" min="1" max="100" required
+           id="guess" class="form-control guessField">
+    <button id="guessButton" class="btn btn-primary guessButton" type="button">
+      Submit guess
+    </button>
+  </div>
+</div>
+<div class="resultParas mt-4">
+  <p class="prev-guesses fw-bold"></p>
+  <p id="highLow" class="lowOrHi text-warning fw-semibold"></p>
+</div>
     </main>
     
     
