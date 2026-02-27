@@ -32,7 +32,7 @@ let referenceColor = null;
 let wasMatch = true;
 
 // ====== CLICK TO CALIBRATE PICK ======
-canvas.addEventListener("click", (event) => {
+canvas.addEventListener("pointerdown", (event) => {
   const rect = canvas.getBoundingClientRect();
   sampleX = event.clientX - rect.left;
   sampleY = event.clientY - rect.top;
