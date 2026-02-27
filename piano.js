@@ -34,10 +34,14 @@ navigator.mediaDevices.getUserMedia({ video: true })
   })
   .catch(err => console.error(err));
 
-video.addEventListener("loadeddata", () => {
-  videoReady = true;
-  drawFrame();
-});
+navigator.mediaDevices.getUserMedia({ video: true })
+  .then(async (stream) => {
+    video.srcObject = stream;
+
+    await video.play();   // 👈 forces playback on iPhone
+
+    drawFrame();          // start loop AFTER play
+  });
 
 // ===== CALIBRATION =====
 canvas.addEventListener("click", async (event) => {
