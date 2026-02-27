@@ -40,7 +40,7 @@ video.addEventListener("loadeddata", () => {
 });
 
 // ===== CALIBRATION =====
-canvas.addEventListener("pointerdown", async (event) => {
+canvas.addEventListener("click", async (event) => {
   await unlockAudio();
 
   if (!videoReady) {
