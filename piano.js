@@ -1,10 +1,22 @@
-// ====== ELEMENTS ======
 const video = document.getElementById("webcam");
 const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
 
-// ====== AUDIO ======
+let videoReady = false;
+let sampleX = null;
+let sampleY = null;
+let referenceColor = null;
+let wasMatch = true;
+
+// ===== AUDIO =====
 const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+
+async function unlockAudio() {
+  if (audioCtx.state !== "running") {
+    await audioCtx.resume();
+    console.log("Audio unlocked");
+  }
+}
 
 function playNote() {
   const osc = audioCtx.createOscillator();
@@ -15,24 +27,27 @@ function playNote() {
   setTimeout(() => osc.stop(), 200);
 }
 
-document.body.addEventListener("click", () => {
-  audioCtx.resume();
-});
-
-// ====== CAMERA ======
+// ===== CAMERA =====
 navigator.mediaDevices.getUserMedia({ video: true })
   .then(stream => {
     video.srcObject = stream;
-  });
+  })
+  .catch(err => console.error(err));
 
-// ====== CALIBRATION STATE ======
-let sampleX = null;
-let sampleY = null;
-let referenceColor = null;
-let wasMatch = true;
+video.addEventListener("loadeddata", () => {
+  videoReady = true;
+  drawFrame();
+});
 
-// ====== CLICK TO CALIBRATE PICK ======
-canvas.addEventListener("pointerdown", (event) => {
+// ===== CALIBRATION =====
+canvas.addEventListener("pointerdown", async (event) => {
+  await unlockAudio();
+
+  if (!videoReady) {
+    console.log("Video not ready yet");
+    return;
+  }
+
   const rect = canvas.getBoundingClientRect();
 
   sampleX = event.clientX - rect.left;
@@ -49,7 +64,7 @@ canvas.addEventListener("pointerdown", (event) => {
   console.log("Calibrated:", referenceColor);
 });
 
-// ====== COLOR DISTANCE CHECK ======
+// ===== COLOR MATCH =====
 function isColorMatch(r, g, b) {
   if (!referenceColor) return false;
 
@@ -58,11 +73,13 @@ function isColorMatch(r, g, b) {
     Math.abs(g - referenceColor.g) +
     Math.abs(b - referenceColor.b);
 
-  return distance < 80; // tolerance (adjust if needed)
+  return distance < 80;
 }
 
-// ====== MAIN LOOP ======
+// ===== LOOP =====
 function drawFrame() {
+  if (!videoReady) return;
+
   ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
 
   if (sampleX !== null && referenceColor !== null) {
@@ -72,19 +89,14 @@ function drawFrame() {
     const g = pixel[1];
     const b = pixel[2];
 
-    const currentlyMatch = isColorMatch(r, g, b);
+    const match = isColorMatch(r, g, b);
 
-    if (wasMatch && !currentlyMatch) {
-      console.log("PLAY NOTE");
+    if (wasMatch && !match) {
       playNote();
     }
 
-    wasMatch = currentlyMatch;
+    wasMatch = match;
   }
 
   requestAnimationFrame(drawFrame);
 }
-
-video.addEventListener("loadeddata", () => {
-  drawFrame();
-});
