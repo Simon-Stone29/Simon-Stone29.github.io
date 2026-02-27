@@ -34,6 +34,7 @@ let wasMatch = true;
 // ====== CLICK TO CALIBRATE PICK ======
 canvas.addEventListener("pointerdown", (event) => {
   const rect = canvas.getBoundingClientRect();
+
   sampleX = event.clientX - rect.left;
   sampleY = event.clientY - rect.top;
 
@@ -45,8 +46,7 @@ canvas.addEventListener("pointerdown", (event) => {
     b: pixel[2]
   };
 
-  console.log("Calibrated at:", sampleX, sampleY);
-  console.log("Reference color:", referenceColor);
+  console.log("Calibrated:", referenceColor);
 });
 
 // ====== COLOR DISTANCE CHECK ======
