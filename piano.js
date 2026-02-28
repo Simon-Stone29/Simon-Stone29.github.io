@@ -7,7 +7,7 @@ const MAX_POINTS = 10;
 const points = [];
 
 // C major whole steps: C D E F# G# A# C
-jsconst NOTE_FREQUENCIES = [261.63, 293.66, 329.63, 349.23, 392.00, 440.00, 493.88, 523.25, 587.33, 659.25];
+const NOTE_FREQUENCIES = [261.63, 293.66, 329.63, 349.23, 392.00, 440.00, 493.88, 523.25, 587.33, 659.25];
 const NOTE_NAMES = ["C4","D4","E4","F4","G4","A4","B4","C5","D5","E5"]
 // ===== AUDIO =====
 const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
