@@ -47,12 +47,14 @@ canvas.addEventListener("click", async (event) => {
   const rect = canvas.getBoundingClientRect();
   const x = event.clientX - rect.left;
   const y = event.clientY - rect.top;
-  const pixel = ctx.getImageData(x, y, 1, 1).data;
   const index = points.length;
+
+  // sample average instead of single pixel
+  const avg = getAverageColor(x, y);
 
   points.push({
     x, y,
-    referenceColor: { r: pixel[0], g: pixel[1], b: pixel[2] },
+    referenceColor: { r: avg.r, g: avg.g, b: avg.b },
     wasMatch: true,
     freq: NOTE_FREQUENCIES[index],
     name: NOTE_NAMES[index],
