@@ -3,46 +3,29 @@ const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
 let videoReady = false;
 
-const points = [
-  { x: null, y: null, referenceColor: null, wasMatch: true, type: "snare" },
-  { x: null, y: null, referenceColor: null, wasMatch: true, type: "hihat" },
-];
-let nextPoint = 0; // 0 = placing snare, 1 = placing hihat
+const MAX_POINTS = 10;
+const points = [];
 
+// C major whole steps: C D E F# G# A# C
+jsconst NOTE_FREQUENCIES = [261.63, 293.66, 329.63, 349.23, 392.00, 440.00, 493.88, 523.25, 587.33, 659.25];
+const NOTE_NAMES = ["C4","D4","E4","F4","G4","A4","B4","C5","D5","E5"]
 // ===== AUDIO =====
 const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
 async function unlockAudio() {
   if (audioCtx.state !== "running") await audioCtx.resume();
 }
 
-function playSnare() {
-  const bufferSize = audioCtx.sampleRate * 0.2;
-  const buffer = audioCtx.createBuffer(1, bufferSize, audioCtx.sampleRate);
-  const data = buffer.getChannelData(0);
-  for (let i = 0; i < bufferSize; i++) data[i] = (Math.random() * 2 - 1) * (1 - i / bufferSize);
-  const source = audioCtx.createBufferSource();
-  source.buffer = buffer;
-  const filter = audioCtx.createBiquadFilter();
-  filter.type = "bandpass";
-  filter.frequency.value = 3000;
-  source.connect(filter);
-  filter.connect(audioCtx.destination);
-  source.start();
-}
-
-function playHihat() {
-  const bufferSize = audioCtx.sampleRate * 0.08;
-  const buffer = audioCtx.createBuffer(1, bufferSize, audioCtx.sampleRate);
-  const data = buffer.getChannelData(0);
-  for (let i = 0; i < bufferSize; i++) data[i] = (Math.random() * 2 - 1) * (1 - i / bufferSize);
-  const source = audioCtx.createBufferSource();
-  source.buffer = buffer;
-  const filter = audioCtx.createBiquadFilter();
-  filter.type = "highpass";
-  filter.frequency.value = 8000;
-  source.connect(filter);
-  filter.connect(audioCtx.destination);
-  source.start();
+function playNote(freq) {
+  const osc = audioCtx.createOscillator();
+  const gain = audioCtx.createGain();
+  osc.type = "sine";
+  osc.frequency.value = freq;
+  gain.gain.setValueAtTime(0.5, audioCtx.currentTime);
+  gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.6);
+  osc.connect(gain);
+  gain.connect(audioCtx.destination);
+  osc.start();
+  osc.stop(audioCtx.currentTime + 0.6);
 }
 
 // ===== CAMERA =====
@@ -59,18 +42,23 @@ navigator.mediaDevices.getUserMedia({ video: true })
 canvas.addEventListener("click", async (event) => {
   await unlockAudio();
   if (!videoReady) return;
-  if (nextPoint > 1) return; // both points already set
+  if (points.length >= MAX_POINTS) return;
 
   const rect = canvas.getBoundingClientRect();
   const x = event.clientX - rect.left;
   const y = event.clientY - rect.top;
   const pixel = ctx.getImageData(x, y, 1, 1).data;
+  const index = points.length;
 
-  points[nextPoint].x = x;
-  points[nextPoint].y = y;
-  points[nextPoint].referenceColor = { r: pixel[0], g: pixel[1], b: pixel[2] };
-  console.log(`Set ${points[nextPoint].type} at (${x}, ${y}):`, points[nextPoint].referenceColor);
-  nextPoint++;
+  points.push({
+    x, y,
+    referenceColor: { r: pixel[0], g: pixel[1], b: pixel[2] },
+    wasMatch: true,
+    freq: NOTE_FREQUENCIES[index],
+    name: NOTE_NAMES[index],
+  });
+
+  console.log(`Point ${index + 1} (${NOTE_NAMES[index]}) set at (${x}, ${y})`);
 });
 
 // ===== COLOR MATCH =====
@@ -93,15 +81,21 @@ function isColorMatch(r, g, b, ref) {
   return distance < 80;
 }
 
-// ===== DRAW DOTS =====
-function drawDot(x, y, color) {
+// ===== DRAW DOT =====
+function drawDot(x, y, name, isActive) {
   ctx.beginPath();
-  ctx.arc(x, y, 8, 0, Math.PI * 2);
-  ctx.fillStyle = color;
+  ctx.arc(x, y, 10, 0, Math.PI * 2);
+  ctx.fillStyle = isActive ? "rgba(255,255,255,0.9)" : "rgba(0,0,0,0.75)";
   ctx.fill();
   ctx.strokeStyle = "white";
   ctx.lineWidth = 2;
   ctx.stroke();
+
+  ctx.fillStyle = isActive ? "black" : "white";
+  ctx.font = "bold 10px monospace";
+  ctx.textAlign = "center";
+  ctx.textBaseline = "middle";
+  ctx.fillText(name, x, y);
 }
 
 // ===== LOOP =====
@@ -109,19 +103,13 @@ function drawFrame() {
   ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
 
   for (const point of points) {
-    if (point.x === null || point.referenceColor === null) continue;
-
     const { r, g, b } = getAverageColor(point.x, point.y);
     const match = isColorMatch(r, g, b, point.referenceColor);
 
-    if (point.wasMatch && !match) {
-      if (point.type === "snare") playSnare();
-      else playHihat();
-    }
+    if (point.wasMatch && !match) playNote(point.freq);
     point.wasMatch = match;
 
-    // dot: red for snare, yellow for hihat
-    drawDot(point.x, point.y, point.type === "snare" ? "rgba(255,50,50,0.8)" : "rgba(255,220,0,0.8)");
+    drawDot(point.x, point.y, point.name, !match);
   }
 
   requestAnimationFrame(drawFrame);
