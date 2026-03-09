@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en"> 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Choose Your Character</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- TODO: Import your CSS File here -->
+
+
+    
+</head>
+<body>
+    <section class="container">
+        
+     <form id="characterForm" type="get" action="page3.html">
+        <fieldset>
+        <legend>Choose Your Character</legend>
+
+        <label>
+            <input type="radio" id="char1" name="character" value="Aria">
+            Aria, the Warrior
+        </label><br>
+
+        <label>
+            <input type="radio" id = "char2" name="character" value="Eldrin">
+            Eldrin, the Mage
+        </label><br>
+
+        <label>
+            <input type="radio"  id="char3" name="character" value="Tara">
+            Tara, the Rogue
+        </label>
+
+    </fieldset>
+    <button type="submit">Continue</button>
+     </form>
+    </section>
+    Each radio button must have a unique id so the label can be associated with the right button.
+    By default radio buttons restrict users to one selection.
+    If the label isn't associated properly, clicking the label wouldn't select the button.
+
+</body>
+</html>
