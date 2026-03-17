@@ -1,0 +1,81 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DOM </title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        padding: 20px;
+      }
+
+      #number-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        max-width: 700px;
+      }
+
+      .number-box {
+        width: 80px;
+        height: 80px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: blue;
+        background-color: red;
+        font-size: 22px;
+        font-weight: bold;
+        border-radius: 6px;
+      }
+
+      #country-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-top: 20px;
+      }
+
+      .country-card {
+        padding: 10px 16px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        font-size: 14px;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <section>
+        <h1>Number Generator</h1>
+        <div id="number-container"></div>
+      </section>
+      <section>
+        <h1>World Countries</h1>
+        <div id="country-container"></div>
+      </section>
+    </main>
+    <script src="script.js"></script>
+  </body>
+</html>
+<!-- Starting Scaffold for 
+ https://github.com/Asabeneh/30-Days-Of-JavaScript/blob/master/22_Day_Manipulating_DOM_object/22_day_manipulating_DOM_object.md#exercises-level-1
+ -->
+<!-- Worksheet : https://docs.google.com/document/d/1YKbbX9QZGO9Ttl-3zTrIhomvKXp_XtkXqEIotMw0-Wk/edit?usp=sharing -->
+
+<script>  
+for (let i = 0; i < 101; i++) {
+            title = document.createElement('div')
+            title.className = 'number-box'
+            title.style.fontSize = '24px'
+            title.textContent = i
+            document.querySelector("#number-container").appendChild(title)
+        }
+
+
+
+
+
+</script>
