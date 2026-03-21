@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en"> 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Path of Stealth</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <section class="container">
+        
+   <h1>The Path of Stealth</h1>
+<p>To successfully navigate the Path of Stealth, you must choose your actions carefully. Select the correct sequence of actions to avoid detection and reach your objective.</p>
+
+<!-- Actions -->
+<div onclick="selectAction(this, 'hide')" class="stealth-option">Hide in the shadows</div>
+<div onclick="selectAction(this, 'run')" class="stealth-option">Run quickly to the next cover</div>
+<div onclick="selectAction(this, 'distract')" class="stealth-option">Create a distraction</div>
+<div onclick="selectAction(this, 'wait')" class="stealth-option">Wait for the right moment</div>
+
+<!-- Buttons -->
+<button onclick="checkSequence()">Check Sequence</button>
+<button onclick="reset()">Reset!</button>
+
+    </section>
+
+<script>
+const correctSequence = ['hide', 'wait', 'distract'];
+let currSequence = [];
+
+function selectAction(el, input) {
+    currSequence.push(input);
+    el.style.backgroundColor = "blue";
+}
+
+function checkSequence() {
+    const isCorrect = JSON.stringify(currSequence) === JSON.stringify(correctSequence);
+
+    alert(isCorrect ? "Correct!" : "Wrong sequence, reset and try again!");
+
+    if (isCorrect) {
+        window.location.href = "page6.html";
+    }
+}
+
+function reset() {
+    currSequence.length = 0;
+    var options = document.querySelectorAll('.stealth-option');
+    for (var i = 0; i < options.length; i++) {
+        options[i].style.backgroundColor = '';
+    }
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Journey Continues</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <section class="container">
+        <h1>The Journey Continues</h1>
+<p>With the guardian's riddle behind you, the path forward splits into three. Each route is known to favor certain traits: strength, wisdom, or stealth. Choose your path wisely, as it will influence the challenges you face ahead.</p>
+ <form> 
+    <label> Choose your path: </label>
+            <select id="pathChoice" name="pathChoice">
+                <option value="default" selected>Select an option</option>
+                <option value="strength">Strength</option>
+                <option value="wisdom">Wisdom</option>
+                <option value="stealth">Stealth</option>
+
+                </select>
+            <button id="submitButton" type="submit">Continue on your journey</button>
+            
+        </form>
+<p>Your choice will not only test your abilities but also reveal deeper truths about your character.</p>
+          
+    </section>
+<script>
+const form = document.querySelector("form");
+const select = document.getElementById("pathChoice");
+form.addEventListener("submit", function(e) {
+    e.preventDefault();
+    const choice = select.value;
+    if (choice == "stealth") {
+        window.location.href = "page5b.html";
+    } else {
+        window.location.href = "page6.html";
+    }
+});
+
+select.addEventListener("change", function(){
+        const choice = select.value;
+    if (choice == "stealth") {
+        document.body.style = "background-color: red"; }
+    if (choice == "strength") {
+        document.body.style = "background-color: green"; }
+    if (choice == "wisdom") {
+        document.body.style = "background-color: blue"; }
+})
+</script>
+
+</body>
+</html>

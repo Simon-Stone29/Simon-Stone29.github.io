@@ -3,12 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Quest Begins</title>
+    <title>The First Obstacle</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <section class="container">
-    
+        <h1>The First Obstacle</h1>
+        <p>As you venture deeper into the Dark Forest, you encounter a mystical guardian. The guardian blocks your path and poses a riddle:</p>
+        <blockquote> "I speak without a mouth and hear without ears. I have no body, but I come alive with wind. What am I?”</blockquote>
+           <form action="page5.html" method="GET">
+            Your answer: 
+            <input type="text" name="riddle" id="riddle">
+            <button style="color: white; background-color: red" id="submitButton" type="submit">Submit answer</button>
+            
+        </form>
     </section>
+
+<script>
+    let inputVal = document.getElementById("riddle");
+    let button = document.getElementById("submitButton");
+
+    inputVal.addEventListener('change', function () {
+        checkAnswer(inputVal.value, "echo");
+    });
+
+    function checkAnswer(input, real) {
+        if (input === real) {
+            button.style.backgroundColor = "green";
+            button.style.color = "white";
+        } else {
+            button.style.backgroundColor = "red";
+            button.style.color = "white";
+        }
+    }
+</script>
 </body>
 </html>
