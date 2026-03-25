@@ -1,98 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
-   <head>
-      <meta charset="UTF-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <title>Simon Stone - Home</title>
-      <link href="https://cdn.simplecss.org/simple.min.css" rel="stylesheet" type="text/css">
-      <style>
-         .nav .active {
-         color: crimson;
-         }
-         nav ul.nav {
-         margin: 0;
-         padding: 0;
-         list-style: none;
-         display: flex;
-         gap: 1rem;
-         justify-content: center;
-         }
-           .logo {
-            align-content: center;
-            font-size: 24px;
-        }
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Diner</title>
 
-        nav {
-            display: flex;
-            flex-direction: row;
-            background-color: #333;
-            padding: 20px;
-            color: white;
-            justify-content: space-between;
-            align-content: center;
-            text-align: center;
-        }
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>The API Diner</h1>
+    <a href="https://docs.google.com/document/d/1Fv5uvmhhTICSiDvjJ1uO55N16VmZdlcvPtk650D5WT4/edit?usp=sharing">Shared google doc</a>
+    <button id="fetch-btn">Order a Random Dog</button>
+    <div id="output"></div>
 
-        .navul {
-            display: flex;
-            justify-content: space-around;
-            list-style-type: none;
-            width: 100%
-        }
+    <!-- Add these to your HTML body .-->
+    <h2>Search the Menu</h2>
+    <input id="food-input" type="text" placeholder="Search for a food...">
+    <button id="meal-btn">Search Menu</button>
+    <div id="meal-output"></div>
 
-        .navul a {
-            color: white;
-        }
+    <h3>Tell a Joke</h3>
+    <button id="joke-btn">Tell Me a Joke</button>
+    <div id="joke-output"></div>
 
-        @media (max-width: 600px) {
-
-            nav {
-                flex-direction: column;
-                align-items: center;
-                padding: 10px;
-            }
-
-            nav .logo {
-                width: 100%;
-                text-align: center;
-                padding: 10px 0;
-            }
-
-            nav ul {
-                flex-direction: column;
-                align-items: center;
-                width: 100%;
-                padding: 0;
-            }
-
-            nav li {
-                width: 100%;
-                text-align: center;
-                padding: 10px 0;
-            }
-        }
-      </style>
-   </head>
-   <body>
-
-      
-   <nav>
-            <div class="logo">
-                Simon Stone
-            </div>
-
-            <ul class="navul">
-                <li><a href="index.html"class="active">Home</a></li>
-                <li><a href="about_me.html">About Me</a></li>
-                <li><a href="blog.html" >Blog</a></li>
-                <li><a href="fun_with_animations.html">Animation Fun!</a></li>
-            </ul>
-        </nav>
-      <h1 class="scale-up-center">
-         Simon Stone's Website
-      </h1>
-      <p>Hello, my name is Simon. Welcome to my website! I <em><strong>really</strong></em> hope you enjoy!</p>
-      <p>Here's me!</p>
-       <img alt="Selfie of me and a dog" src="me.jpg">
-   </body>
+    <script src="main.js"></script>
+</body>
 </html>
